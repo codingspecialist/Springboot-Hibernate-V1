@@ -39,8 +39,8 @@ public class Board {
     // 조회를 위해서만 필요함
     // CascadeType.ALL를 걸면 Board 객체 save시에 comment를 함께 저장할 수 있다.
     // 양방향 매핑시 걸어준다.
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    // @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
     public void addComment(Comment comment) {

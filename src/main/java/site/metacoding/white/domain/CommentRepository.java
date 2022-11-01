@@ -21,6 +21,7 @@ public class CommentRepository {
     }
 
     public void deleteById(Long id) {
+        em.remove(id);
         em.createQuery("delete from Comment c where c.id = :id")
                 .setParameter("id", id)
                 .executeUpdate();

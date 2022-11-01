@@ -46,9 +46,15 @@ public class BoardRepository {
     }
 
     public void deleteById(Long id) {
-        em.createQuery("delete from Board b where b.id = :id")
-                .setParameter("id", id)
-                .executeUpdate();
+        Board boardPS = findById(id).orElseThrow(
+                () -> new RuntimeException("해당 게시글을 찾을 수 없습니다."));
+        em.remove(boardPS);
+
+        // 쿼리로 삭제하니까 CaseCade 옵션이 안먹힘.
+        // @OnDelete(action = OnDeleteAction.CASCADE) 이걸 양방향 매핑쪽에 걸어줘야 함.
+        // em.createQuery("delete from Board b where b.id = :id")
+        // .setParameter("id", id)
+        // .executeUpdate();
     }
 
     // JPQL 문법
