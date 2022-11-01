@@ -20,11 +20,9 @@ public class CommentRepository {
         return comment;
     }
 
-    public void deleteById(Long id) {
-        em.remove(id);
-        em.createQuery("delete from Comment c where c.id = :id")
-                .setParameter("id", id)
-                .executeUpdate();
+    // id로도 삭제가능
+    public void deleteById(Comment commentPS) {
+        em.remove(commentPS);
     }
 
     public Optional<Comment> findById(Long id) {

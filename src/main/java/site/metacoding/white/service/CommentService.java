@@ -36,7 +36,8 @@ public class CommentService {
     public void deleteById(Long id) {
         Optional<Comment> commentOP = commentRepository.findById(id);
         if (commentOP.isPresent()) {
-            commentRepository.deleteById(id);
+            Comment commentPS = commentOP.get();
+            commentRepository.deleteById(commentPS);
         } else {
             throw new RuntimeException("해당 " + id + "로 삭제할 수 없습니다.");
         }

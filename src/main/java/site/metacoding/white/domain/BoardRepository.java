@@ -45,9 +45,7 @@ public class BoardRepository {
         return boardList;
     }
 
-    public void deleteById(Long id) {
-        Board boardPS = findById(id).orElseThrow(
-                () -> new RuntimeException("해당 게시글을 찾을 수 없습니다."));
+    public void deleteById(Board boardPS) {
         em.remove(boardPS);
 
         // 쿼리로 삭제하니까 CaseCade 옵션이 안먹힘.
